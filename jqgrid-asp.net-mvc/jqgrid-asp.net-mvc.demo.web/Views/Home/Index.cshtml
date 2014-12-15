@@ -1,31 +1,55 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Demo for jqgrid-asp.net-mvc (https://github.com/weiminye/jqgrid-asp.net-mvc)";
 }
+<table id="list"><tr><td></td></tr></table>
+<div id="pager"></div>
+@section CSSatHead{
+    <link rel="stylesheet" type="text/css" media="screen" href="Content/ui.jqgrid.css" />
+}
+@section JSatHead{
+    <script src="Scripts/i18n/grid.locale-en.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.jqGrid.min.js" type="text/javascript"></script>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <script type="text/javascript">
+        $(function () {
+            $("#list").jqGrid({
+                url: "@Url.Action("IndexJsonList")",
+                datatype: "json",
+                mtype: "GET",
+                colNames: [" ", "First Name", "Last Name", "City", "Zip", ""],
+                colModel: [
+                                    {
+                                        name: 'myac', index: '', width: 80, fixed: true, sortable: false, resize: false, search: false,
+                                        formatter: 'actions',
+                                        formatoptions: {
+                                            keys: true,
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+                                            //delOptions: { recreateForm: true, beforeShowForm: beforeDeleteCallback },
+                                            //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
+                                        }
+                                    },
+                    { name: "FirstName", editable: true, editrules: { required: true }, formoptions: { elmsuffix: '*' } },
+                    { name: "LastName", editable: true, editrules: { required: true }, formoptions: { elmsuffix: '*' } },
+                    { name: "City", editable: true },
+                    { name: "Zip", editable: true },
+                    { name: "ID", key: true, hidden: true },
+
+                ],
+                pager: "#pager",
+                rowNum: 10,
+                rowList: [10, 20, 30],
+                sortname: "invid",
+                sortorder: "desc",
+                viewrecords: true,
+                gridview: true,
+                autoencode: true,
+                editurl: "@Url.Action("UpdateForJqGrid")",
+                caption: "Demo for jqgrid-asp.net-mvc (https://github.com/weiminye/jqgrid-asp.net-mvc)"
+            })
+            .navGrid('#pager', { edit: false, add: true, del: false, search: false }, { id: 'ID' })
+            .jqGrid('filterToolbar', { searchOperators: false, defaultSearch: true, stringResult: true })
+            //.jqGrid('editGridRow', "new", { closeAfterAdd: true, closeOnEscape: true })
+            ;
+        });
+    </script>
+}
