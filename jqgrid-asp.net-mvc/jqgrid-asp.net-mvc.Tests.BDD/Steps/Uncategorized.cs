@@ -15,41 +15,57 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Steps
     public class Uncategorized
     {
         private readonly PageInputting _pageInputting = new PageInputting();
-        private const string CST_TestDataGuid = "TestDataGuid";
+        private string TestDataGuid
+        {
+            get
+            {
+                return ScenarioContext.Current["TestDataGuid"].ToString();
+            }
+            set
+            {
+                ScenarioContext.Current["TestDataGuid"] = value;
+            }
+        }
 
         [When(@"Create a new test record")]
         public void WhenCreateANewTestRecord()
         {
             //_pageInputting.WhenIPressPlusButtonAtJqGrid();
-            ScenarioContext.Current[CST_TestDataGuid] = Guid.NewGuid();
-            WebBrowser.Current.TextField("FirstName").TypeText("FirstName" + ScenarioContext.Current[CST_TestDataGuid]);
-            WebBrowser.Current.TextField("LastName").TypeText("LastName" + ScenarioContext.Current[CST_TestDataGuid]);
-            WebBrowser.Current.TextField("City").TypeText("City" + ScenarioContext.Current[CST_TestDataGuid]);
-            WebBrowser.Current.TextField("Zip").TypeText("Zip" + ScenarioContext.Current[CST_TestDataGuid]);
+            TestDataGuid = Guid.NewGuid().ToString();
+            WebBrowser.Current.TextField("FirstName").TypeText("FirstName" + TestDataGuid);
+            WebBrowser.Current.TextField("LastName").TypeText("LastName" + TestDataGuid);
+            WebBrowser.Current.TextField("City").TypeText("City" + TestDataGuid);
+            WebBrowser.Current.TextField("Zip").TypeText("Zip" + TestDataGuid);
         }
 
         [When(@"Click the submit button")]
         public void WhenClickTheSubmitButton()
         {
             _pageInputting.WhenSubmit();
+            WebBrowser.Current.WaitUntilContainsText(TestDataGuid);
+            WebBrowser.Current.Span(Find.ByClass("ui-icon ui-icon-closethick")).Click();
         }
 
         [Then(@"the added test record will be shown at jqGrid")]
         public void ThenTheAddedTestRecordWillBeShownAtJqGrid()
         {
-            WebBrowser.Current.WaitUntilContainsText(ScenarioContext.Current[CST_TestDataGuid].ToString());
-
             var tabletext = WebBrowser.Current.Table("list").Text;
-            tabletext.Should().Contain("FirstName" + ScenarioContext.Current[CST_TestDataGuid]);
-            tabletext.Should().Contain("LastName" + ScenarioContext.Current[CST_TestDataGuid]);
-            tabletext.Should().Contain("City" + ScenarioContext.Current[CST_TestDataGuid]);
-            tabletext.Should().Contain("Zip" + ScenarioContext.Current[CST_TestDataGuid]);
+            tabletext.Should().Contain("FirstName" + TestDataGuid);
+            tabletext.Should().Contain("LastName" + TestDataGuid);
+            tabletext.Should().Contain("City" + TestDataGuid);
+            tabletext.Should().Contain("Zip" + TestDataGuid);
         }
 
         [When(@"Click the update button at the test record")]
         public void WhenClickTheUpdateButtonAtTheTestRecord()
         {
-            ScenarioContext.Current.Pending();
+            var testrecordid = string.Empty;
+            using (var db = new CRUDDemoDBContext())
+            {
+
+                testrecordid = db.Persons.Single(p => p.FirstName.Contains(TestDataGuid)).ID.ToString();
+            }
+            WebBrowser.Current.Div("jEditButton_" + testrecordid).Click();
         }
 
         [When(@"Edit with new value")]

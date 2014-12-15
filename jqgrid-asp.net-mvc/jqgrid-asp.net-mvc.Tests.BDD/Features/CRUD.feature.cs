@@ -86,6 +86,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("Click the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("the added test record will be shown at jqGrid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("Click the update button at the test record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }

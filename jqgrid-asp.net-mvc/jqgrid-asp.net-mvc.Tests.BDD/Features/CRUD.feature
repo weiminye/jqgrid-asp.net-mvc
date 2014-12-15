@@ -9,7 +9,7 @@ Scenario:  CRUD at UI
 	And Create a new test record
 	And Click the submit button
 	Then the added test record will be shown at jqGrid	
-#	When Click the update button at the test record
+	When Click the update button at the test record
 #	And submit the update
 #	Then the updated test record  will be shown at jqGrid with updated values
 #	When Click the delete button at the test record
