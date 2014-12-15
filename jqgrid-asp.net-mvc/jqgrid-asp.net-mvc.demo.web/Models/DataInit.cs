@@ -1,29 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace jqgrid_asp.net_mvc.demo.web.Models
 {
-    public class CRUDDemoDBContextCustomInitializer : IDatabaseInitializer<CRUDDemoDBContext>
+    public class DataInit
     {
-        public void InitializeDatabase(CRUDDemoDBContext context)
+        public static void Init(CRUDDemoDBContext context)
         {
-            if (context.Database.Exists())
-            {
-                if (!context.Database.CompatibleWithModel(true))
-                {
-                    context.Database.Delete();
-                    context.Database.Create();
-                }
-            }
-            else
-            {
-                context.Database.Create();
-            }
-
             if (context.Persons.SingleOrDefault(c => c.City == "San Francisco" && c.FirstName == "Weimin" && c.LastName == "Ye") == null)
             {
                 context.Persons.Add(new Person() { City = "San Francisco", FirstName = "Weimin", LastName = "Ye", Zip = "94112" });
@@ -37,5 +23,6 @@ namespace jqgrid_asp.net_mvc.demo.web.Models
                 context.SaveChanges();
             }
         }
+
     }
 }

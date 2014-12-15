@@ -178,8 +178,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CRUDDemoDBContextCustomInitializer.cs" />
+    <Compile Include="Models\CRUDDemoDBContextClearInitializer.cs" />
+    <Compile Include="Models\CRUDDemoDBContextNoClearInitializer.cs" />
     <Compile Include="Models\CRUDDemoDBContext.cs" />
+    <Compile Include="Models\DataInit.cs" />
     <Compile Include="Models\Grid\Filter.cs" />
     <Compile Include="Models\Grid\GridModelBinder.cs" />
     <Compile Include="Models\Grid\GridSettings.cs" />
