@@ -7,6 +7,8 @@ using TechTalk.SpecFlow;
 using FluentAssertions;
 using WatiN.Core;
 using Table = TechTalk.SpecFlow.Table;
+using jqgrid_asp.net_mvc.demo.web.Models;
+using TechTalk.SpecFlow.Assist;
 
 namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Steps
 {
@@ -22,13 +24,17 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Steps
         [When(@"input new record as below")]
         public void WhenInputNewRecordAsBelow(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var person = table.CreateInstance<Person>();
+            WebBrowser.Current.TextField("FirstName").TypeText(person.FirstName);
+            WebBrowser.Current.TextField("LastName").TypeText(person.LastName);
+            WebBrowser.Current.TextField("City").TypeText(person.City);
+            WebBrowser.Current.TextField("Zip").TypeText(person.Zip);
         }
 
         [When(@"submit")]
         public void WhenSubmit()
         {
-            ScenarioContext.Current.Pending();
+            WebBrowser.Current.Link(Find.ByClass("fm-button ui-state-default ui-corner-all fm-button-icon-left")).Click();
         }
 
     }

@@ -8,7 +8,9 @@ Scenario: create record
 	Given I am at jqGrid page
 	When I press plus button at jqGrid
 	And input new record as below
-	| City | First Name | Last Name | Zip   |
+	| City | FirstName | LastName | Zip   |
 	| Napa | Weimin     | Ye        | 94112 |
 	And submit
 	Then the record will be shown at jqGrid
+	| City | FirstName | LastName | Zip   |
+	| Napa | Weimin     | Ye        | 94112 |

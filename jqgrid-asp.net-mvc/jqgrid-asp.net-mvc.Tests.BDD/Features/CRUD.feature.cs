@@ -89,8 +89,8 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "City",
-                        "First Name",
-                        "Last Name",
+                        "FirstName",
+                        "LastName",
                         "Zip"});
             table1.AddRow(new string[] {
                         "Napa",
@@ -101,8 +101,19 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("input new record as below", ((string)(null)), table1, "And ");
 #line 13
  testRunner.And("submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "City",
+                        "FirstName",
+                        "LastName",
+                        "Zip"});
+            table2.AddRow(new string[] {
+                        "Napa",
+                        "Weimin",
+                        "Ye",
+                        "94112"});
 #line 14
- testRunner.Then("the record will be shown at jqGrid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the record will be shown at jqGrid", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
