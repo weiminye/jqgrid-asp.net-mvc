@@ -69,51 +69,23 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("create record")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("CRUD at UI")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUD")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CRUD")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Create")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Positive")]
-        public virtual void CreateRecord()
+        public virtual void CRUDAtUI()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("create record", new string[] {
-                        "CRUD",
-                        "Create",
-                        "Positive"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CRUD at UI", ((string[])(null)));
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 7
  testRunner.Given("I am at jqGrid page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 8
  testRunner.When("I press plus button at jqGrid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "City",
-                        "FirstName",
-                        "LastName",
-                        "Zip"});
-            table1.AddRow(new string[] {
-                        "Napa",
-                        "Weimin",
-                        "Ye",
-                        "94112"});
+#line 9
+ testRunner.And("Create a new test record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.And("input new record as below", ((string)(null)), table1, "And ");
-#line 13
- testRunner.And("submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "City",
-                        "FirstName",
-                        "LastName",
-                        "Zip"});
-            table2.AddRow(new string[] {
-                        "Napa",
-                        "Weimin",
-                        "Ye",
-                        "94112"});
-#line 14
- testRunner.Then("the record will be shown at jqGrid", ((string)(null)), table2, "Then ");
+ testRunner.And("Click the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.Then("the added test record will be shown at jqGrid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

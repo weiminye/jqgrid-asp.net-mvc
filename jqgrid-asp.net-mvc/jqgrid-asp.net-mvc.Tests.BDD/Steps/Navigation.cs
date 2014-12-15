@@ -19,5 +19,7 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Steps
             WebBrowser.Current.GoTo(url);
             WebBrowser.Current.Url.Should().Be(url);
         }
+
+
     }
 }
