@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace jqgrid_asp.net_mvc.Tests.BDD.Features
+namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Features
 {
     using TechTalk.SpecFlow;
     
@@ -48,7 +48,7 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.Features
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
                         && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "CRUD")))
             {
-                jqgrid_asp.net_mvc.Tests.BDD.Features.CRUDFeature.FeatureSetup(null);
+                jqgrid_asp.net_mvc.Tests.BDD.UI.Features.CRUDFeature.FeatureSetup(null);
             }
         }
         
@@ -69,23 +69,40 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add two numbers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("create record")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUD")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void AddTwoNumbers()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CRUD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Create")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Positive")]
+        public virtual void CreateRecord()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
-                        "mytag"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("create record", new string[] {
+                        "CRUD",
+                        "Create",
+                        "Positive"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I am at jqGrid page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I press plus button at jqGrid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "City",
+                        "First Name",
+                        "Last Name",
+                        "Zip"});
+            table1.AddRow(new string[] {
+                        "Napa",
+                        "Weimin",
+                        "Ye",
+                        "94112"});
 #line 10
- testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("input new record as below", ((string)(null)), table1, "And ");
+#line 13
+ testRunner.And("submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.Then("the record will be shown at jqGrid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

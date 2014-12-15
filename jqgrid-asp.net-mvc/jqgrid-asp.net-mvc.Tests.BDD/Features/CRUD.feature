@@ -3,9 +3,12 @@
 	As a user
 	I want to CRUD record via jqGrid
 
-@mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+@CRUD@Create@Positive
+Scenario: create record
+	Given I am at jqGrid page
+	When I press plus button at jqGrid
+	And input new record as below
+	| City | First Name | Last Name | Zip   |
+	| Napa | Weimin     | Ye        | 94112 |
+	And submit
+	Then the record will be shown at jqGrid

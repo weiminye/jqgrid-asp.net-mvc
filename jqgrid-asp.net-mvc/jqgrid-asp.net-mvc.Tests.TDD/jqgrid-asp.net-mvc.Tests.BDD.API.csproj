@@ -6,8 +6,8 @@
     <ProjectGuid>{FC5DED9B-60B4-4B5B-8F36-537AA9DB98C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>jqgrid_asp.net_mvc.Tests.TDD</RootNamespace>
-    <AssemblyName>jqgrid-asp.net-mvc.Tests.TDD</AssemblyName>
+    <RootNamespace>jqgrid_asp.net_mvc.Tests.TDD.API</RootNamespace>
+    <AssemblyName>jqgrid-asp.net-mvc.Tests.BDD.API</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

@@ -5,9 +5,9 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.demo.web", "jqgrid-asp.net-mvc.demo.web\jqgrid-asp.net-mvc.demo.web.csproj", "{4C02C826-DD0F-4F99-AFD2-8D38401D664A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.Tests.BDD", "jqgrid-asp.net-mvc.Tests.BDD\jqgrid-asp.net-mvc.Tests.BDD.csproj", "{675070EE-725F-4DD7-96AC-10C99B3DC6B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.Tests.BDD.UI", "jqgrid-asp.net-mvc.Tests.BDD\jqgrid-asp.net-mvc.Tests.BDD.UI.csproj", "{675070EE-725F-4DD7-96AC-10C99B3DC6B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.Tests.TDD", "jqgrid-asp.net-mvc.Tests.TDD\jqgrid-asp.net-mvc.Tests.TDD.csproj", "{FC5DED9B-60B4-4B5B-8F36-537AA9DB98C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.Tests.BDD.API", "jqgrid-asp.net-mvc.Tests.TDD\jqgrid-asp.net-mvc.Tests.BDD.API.csproj", "{FC5DED9B-60B4-4B5B-8F36-537AA9DB98C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc", "jqgrid-asp.net-mvc\jqgrid-asp.net-mvc.csproj", "{3A7BA18A-6C0D-467C-8CAB-C3D9C0A6BE2E}"
 EndProject

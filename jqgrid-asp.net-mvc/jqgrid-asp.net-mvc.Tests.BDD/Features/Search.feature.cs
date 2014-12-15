@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace jqgrid_asp.net_mvc.Tests.BDD.Features
+namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Features
 {
     using TechTalk.SpecFlow;
     
@@ -49,7 +49,7 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.Features
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
                         && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Search")))
             {
-                jqgrid_asp.net_mvc.Tests.BDD.Features.SearchFeature.FeatureSetup(null);
+                jqgrid_asp.net_mvc.Tests.BDD.UI.Features.SearchFeature.FeatureSetup(null);
             }
         }
         
