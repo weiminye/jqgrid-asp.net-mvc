@@ -61,6 +61,7 @@
       <DependentUpon>CRUD.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\Uncategorized.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\jqgrid-asp.net-mvc\jqgrid-asp.net-mvc.csproj">
