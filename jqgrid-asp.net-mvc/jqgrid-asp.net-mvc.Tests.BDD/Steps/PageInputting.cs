@@ -16,7 +16,7 @@ namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Steps
         [When(@"I press plus button at jqGrid")]
         public void WhenIPressPlusButtonAtJqGrid()
         {
-            WebBrowser.Current.Span(Find.ByClass("ui-icon-plus")).Click();
+            WebBrowser.Current.Span(Find.ByClass("ui-icon ui-icon-plus")).Click();
         }
 
         [When(@"input new record as below")]
