@@ -71,5 +71,66 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
             persons.SingleOrDefault(p => p.FirstName == "Weimin" && p.LastName == "Ye" && p.City == "San Francisco" && p.Zip == "94112").Should().NotBeNull();
         }
 
+        public string CurrentTestDataGuid
+        {
+            get
+            {
+                return ScenarioContext.Current["CurrentTestDataGuid"] as string;
+            }
+            set
+            {
+                ScenarioContext.Current["CurrentTestDataGuid"] = value;
+            }
+        }
+
+        [When(@"I create a record via jqGrid invoking API")]
+        public void WhenICreateARecordViaJqGridInvokingAPI()
+        {
+            CurrentTestDataGuid = Guid.NewGuid().ToString();
+            Console.WriteLine("CurrentTestDataGuid is {0}", CurrentTestDataGuid);
+            var person = new
+            {
+                FirstName = "FirstName" + CurrentTestDataGuid,
+                LastName = "LastName" + CurrentTestDataGuid,
+                Zip = "Zip" + CurrentTestDataGuid,
+                City = "City" + CurrentTestDataGuid,
+                oper = "add",
+                id = "_empty",
+            };
+
+            Uri url = null;
+
+            if (Uri.TryCreate(new Uri(Vars.DemoSiteWebHost), "/Home/UpdateForJqGrid", out url))
+            {
+                Console.WriteLine("url is {0}", url);
+            }
+
+            HttpClient client = new HttpClient();
+            // Add an Accept header for JSON format.            
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            Uri finalurl = null;
+            // List all products.
+            var response = client.PostAsJsonAsync(url, person).Result;  // Blocking call! 
+            if (response.IsSuccessStatusCode)
+            {
+                finalurl = response.Headers.Location;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        [Then(@"the record should be listed at the result with reading record")]
+        public void ThenTheRecordShouldBeListedAtTheResultWithReadingRecord()
+        {
+            WhenIReadRecordsViaJqGridInvokingAPI();
+
+            var persons = JqGridReadingJsonData.rows as IEnumerable<Person>;
+            persons.SingleOrDefault(p => p.FirstName.Contains(CurrentTestDataGuid)).Should().NotBeNull();
+        }
+
     }
 }

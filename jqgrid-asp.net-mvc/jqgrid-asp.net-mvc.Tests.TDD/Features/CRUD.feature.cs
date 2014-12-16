@@ -89,6 +89,28 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("create record")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CRUD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Create")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Positive")]
+        public virtual void CreateRecord()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("create record", new string[] {
+                        "CRUD",
+                        "Create",
+                        "Positive"});
+#line 12
+this.ScenarioSetup(scenarioInfo);
+#line 13
+ testRunner.When("I create a record via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("the record should be listed at the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
