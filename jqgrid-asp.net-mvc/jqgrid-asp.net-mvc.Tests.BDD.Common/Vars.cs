@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace jqgrid_asp.net_mvc.Tests.BDD.UI
+namespace jqgrid_asp.net_mvc.Tests.BDD.Common
 {
     public class Vars
     {

@@ -37,7 +37,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ImpromptuInterface">
+      <HintPath>..\packages\ImpromptuInterface.5.6.2\lib\net40\ImpromptuInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SpecFlow.Assist.Dynamic">
+      <HintPath>..\packages\SpecFlow.Assist.Dynamic.1.0.2\lib\40\SpecFlow.Assist.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
@@ -64,6 +91,14 @@
     <Compile Include="Steps\Uncategorized.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\jqgrid-asp.net-mvc.demo.web\jqgrid-asp.net-mvc.demo.web.csproj">
+      <Project>{4c02c826-dd0f-4f99-afd2-8d38401d664a}</Project>
+      <Name>jqgrid-asp.net-mvc.demo.web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jqgrid-asp.net-mvc.Tests.BDD.Common\jqgrid-asp.net-mvc.Tests.BDD.Common.csproj">
+      <Project>{3c947a10-20e5-4bd7-acf5-26d6c4b1a33b}</Project>
+      <Name>jqgrid-asp.net-mvc.Tests.BDD.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\jqgrid-asp.net-mvc\jqgrid-asp.net-mvc.csproj">
       <Project>{3a7ba18a-6c0d-467c-8cab-c3d9c0a6be2e}</Project>
       <Name>jqgrid-asp.net-mvc</Name>

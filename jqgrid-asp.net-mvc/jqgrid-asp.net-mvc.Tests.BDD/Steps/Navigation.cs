@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 using FluentAssertions;
 using WatiN.Core;
 using Table = TechTalk.SpecFlow.Table;
+using jqgrid_asp.net_mvc.Tests.BDD.Common;
 
 namespace jqgrid_asp.net_mvc.Tests.BDD.UI.Steps
 {

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.Tests.BD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc", "jqgrid-asp.net-mvc\jqgrid-asp.net-mvc.csproj", "{3A7BA18A-6C0D-467C-8CAB-C3D9C0A6BE2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jqgrid-asp.net-mvc.Tests.BDD.Common", "jqgrid-asp.net-mvc.Tests.BDD.Common\jqgrid-asp.net-mvc.Tests.BDD.Common.csproj", "{3C947A10-20E5-4BD7-ACF5-26D6C4B1A33B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3A7BA18A-6C0D-467C-8CAB-C3D9C0A6BE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A7BA18A-6C0D-467C-8CAB-C3D9C0A6BE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A7BA18A-6C0D-467C-8CAB-C3D9C0A6BE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C947A10-20E5-4BD7-ACF5-26D6C4B1A33B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C947A10-20E5-4BD7-ACF5-26D6C4B1A33B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C947A10-20E5-4BD7-ACF5-26D6C4B1A33B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C947A10-20E5-4BD7-ACF5-26D6C4B1A33B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

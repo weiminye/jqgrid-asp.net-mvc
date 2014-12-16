@@ -57,7 +57,7 @@ namespace jqgrid_asp.net_mvc
             var totalRecords = result.Length;
             var totalPages = (int)Math.Ceiling((float)totalRecords / (float)pageSize);
 
-            var jsonData = new
+            var jsonData = new JqGridReadingJsonData<TSource, TResult>()
             {
                 total = totalPages,
                 page = pageNum,
@@ -74,4 +74,13 @@ namespace jqgrid_asp.net_mvc
         }
     }
 
+    public class JqGridReadingJsonData<TSource, TResult> where TSource : class
+    {
+        public int total { get; set; }
+
+        public int page { get; set; }
+        public int records { get; set; }
+        public TResult[] rows { get; set; }
+
+    }
 }

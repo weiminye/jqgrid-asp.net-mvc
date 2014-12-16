@@ -107,7 +107,6 @@
     <Compile Include="Steps\PageInputting.cs" />
     <Compile Include="Steps\Uncategorized.cs" />
     <Compile Include="Steps\Verification.cs" />
-    <Compile Include="Vars.cs" />
     <Compile Include="WebBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +125,10 @@
     <ProjectReference Include="..\jqgrid-asp.net-mvc.demo.web\jqgrid-asp.net-mvc.demo.web.csproj">
       <Project>{4c02c826-dd0f-4f99-afd2-8d38401d664a}</Project>
       <Name>jqgrid-asp.net-mvc.demo.web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jqgrid-asp.net-mvc.Tests.BDD.Common\jqgrid-asp.net-mvc.Tests.BDD.Common.csproj">
+      <Project>{3c947a10-20e5-4bd7-acf5-26d6c4b1a33b}</Project>
+      <Name>jqgrid-asp.net-mvc.Tests.BDD.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
