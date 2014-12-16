@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grid\Filter.cs" />
+    <Compile Include="Filter.cs" />
     <Compile Include="Grid\GridModelBinder.cs" />
     <Compile Include="Grid\GridSettings.cs" />
     <Compile Include="Grid\JsonModelBinder.cs" />
@@ -60,6 +60,8 @@
     <Compile Include="Helpers\StringEnum.cs" />
     <Compile Include="Helpers\WhereOperation.cs" />
     <Compile Include="JqGrid.cs" />
+    <Compile Include="JqGridQueryParametes.cs" />
+    <Compile Include="JqGridReadingJsonData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

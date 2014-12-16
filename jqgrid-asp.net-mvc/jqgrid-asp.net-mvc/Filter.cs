@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json; //http://www.cnblogs.com/CodingPerfectWorld/archive/2010/08/30/1812628.html
+using System.Runtime.Serialization.Json;
+using jqgrid_asp.net_mvc.Grid; 
 
-namespace jqgrid_asp.net_mvc.Grid
+namespace jqgrid_asp.net_mvc
 {
     [DataContract]
     public class Filter

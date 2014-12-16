@@ -19,7 +19,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         #region jqgrid read and search
 
-        public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.Grid.Filter filters)
+        public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.Filter filters)
         {
             return JqGrid.Load(db.Persons,
                 d => d.FirstName,

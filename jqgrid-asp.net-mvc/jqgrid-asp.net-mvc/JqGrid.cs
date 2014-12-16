@@ -34,7 +34,12 @@ namespace jqgrid_asp.net_mvc
         }
 
 
-        public static ActionResult Load<TSource, TResult, TKey>(DbSet<TSource> dbset, Func<TSource, TKey> orderquery, Func<TSource, TResult> selector, int? rows, int? page, bool _search, ref jqgrid_asp.net_mvc.Grid.Filter filters, bool orderbydescending = true) where TSource : class
+        //public static ActionResult Load<TSource, TResult, TKey>(DbSet<TSource> dbset, Func<TSource, TKey> orderquery, Func<TSource, TResult> selector, JqGridQueryParameters jqgridqueryparameter, bool orderbydescending = true) where TSource : class
+        //{
+        //    return Load(dbset, orderquery, selector, jqgridqueryparameter.rows, jqgridqueryparameter.page, jqgridqueryparameter._search,ref jqgridqueryparameter.filters);
+        //}
+
+        public static ActionResult Load<TSource, TResult, TKey>(DbSet<TSource> dbset, Func<TSource, TKey> orderquery, Func<TSource, TResult> selector, int? rows, int? page, bool _search, ref jqgrid_asp.net_mvc.Filter filters, bool orderbydescending = true) where TSource : class
         {
             IQueryable<TSource> where_predicate = JqGrid.GenerateWherePredicate(dbset, _search, ref filters);
 
@@ -99,14 +104,14 @@ namespace jqgrid_asp.net_mvc
             return returnjson;
         }
 
-        private static IQueryable<TSource> GenerateWherePredicate<TSource>(DbSet<TSource> dbset, bool _search, ref jqgrid_asp.net_mvc.Grid.Filter filters)
+        private static IQueryable<TSource> GenerateWherePredicate<TSource>(DbSet<TSource> dbset, bool _search, ref jqgrid_asp.net_mvc.Filter filters)
             where TSource : class
         {
             var request = HttpContext.Current.Request;
             IQueryable<TSource> where_predicate = null;
             if (_search)
             {
-                if (filters == null) filters = jqgrid_asp.net_mvc.Grid.Filter.Create(request["filters"] ?? "");
+                if (filters == null) filters = jqgrid_asp.net_mvc.Filter.Create(request["filters"] ?? "");
 
                 if (filters == null) throw new NullReferenceException("flters is null, load mvc parse is error");
 
@@ -161,13 +166,5 @@ namespace jqgrid_asp.net_mvc
         }
     }
 
-    public class JqGridReadingJsonData<TSource, TResult> where TSource : class
-    {
-        public int total { get; set; }
 
-        public int page { get; set; }
-        public int records { get; set; }
-        public TResult[] rows { get; set; }
-
-    }
 }
