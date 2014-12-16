@@ -21,11 +21,11 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.Filter filters)
         {
-            return JqGrid.Load(db.Persons,
-                d => d.FirstName,
-                s => new
-                {
-                    //PersonID = s.ID,
+            return JqGrid.Load(
+                db.Persons, //Please replace to your business logic code
+                d => d.FirstName,//Please replace to your business logic code
+                s => new //Please replace to your business logic code
+                {                    
                     s.ID,
                     s.FirstName,
                     s.LastName,
@@ -47,6 +47,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         private ActionResult DeletePerson(Person person)
         {
+            //Please replace to your business logic code
             var deletepersonentity = db.Persons.Single(p => p.ID == person.ID);
             db.Persons.Remove(deletepersonentity);
 
@@ -57,6 +58,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         private ActionResult EditPerson(Person person)
         {
+            //Please replace to your business logic code
             var editpersonentity = db.Persons.Single(p => p.ID == person.ID);
             editpersonentity.FirstName = person.FirstName;
             editpersonentity.LastName = person.LastName;
@@ -71,6 +73,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         private ActionResult AddPerson(Person person)
         {
+            //Please replace to your business logic code
             var newpersonentity = new Person();
             newpersonentity.FirstName = person.FirstName;
             newpersonentity.LastName = person.LastName;
