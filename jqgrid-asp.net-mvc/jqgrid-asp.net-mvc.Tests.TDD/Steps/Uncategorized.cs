@@ -270,7 +270,7 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
         public void ThenTheReturnedRecordShouldAllContainsAtFirstName(string firstname)
         {
             var persons = ReturnandOutputPersons();
-            
+
             foreach (var p in persons)
             {
                 p.FirstName.Contains(firstname).Should().BeTrue();
@@ -362,82 +362,138 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
             persons.FirstOrDefault(p => p.Zip == zip).Should().BeNull();
         }
 
-        [When(@"I search by FirstName as '(.*)' and LastName as '(.*)' via jqGrid invoking API")]
-        public void WhenISearchByFirstNameAsAndLastNameAsViaJqGridInvokingAPI(string p0, string p1)
+        [When(@"I search by FirstName '(.*)' and LastName '(.*)' via jqGrid invoking API")]
+        public void WhenISearchByFirstNameAsAndLastNameAsViaJqGridInvokingAPI(string firstname, string lastname)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418722518015&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22FirstName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22we%22%7D%2C%7B%22field%22%3A%22LastName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22y%22%7D%5D%7D";
+
+            GetPersonListByUri(queryurl);
         }
 
-        [Then(@"the returned record should all contains '(.*)' at FirstName and '(.*)' at LastName")]
-        public void ThenTheReturnedRecordShouldAllContainsAtFirstNameAndAtLastName(string p0, string p1)
+
+        [Then(@"the returned record should all contains FirstName '(.*)'  and LastName '(.*)'")]
+        public void ThenTheReturnedRecordShouldAllContainsAtFirstNameAndAtLastName(string firstname, string lastname)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.FirstName.Contains(firstname).Should().BeTrue();
+                p.LastName.Contains(lastname).Should().BeTrue();
+            }
         }
 
         [Then(@"the record that  at FistName is '(.*)' and LastName is '(.*)' should NOT be listed at the result with reading record")]
-        public void ThenTheRecordThatAtFistNameIsAndLastNameIsShouldNOTBeListedAtTheResultWithReadingRecord(string p0, string p1)
+        public void ThenTheRecordThatAtFistNameIsAndLastNameIsShouldNOTBeListedAtTheResultWithReadingRecord(string firstname, string lastname)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+            persons.FirstOrDefault(p => p.FirstName == firstname && p.LastName == lastname).Should().BeNull();
         }
 
-        [When(@"I search by FirstName as '(.*)' and City as '(.*)' via jqGrid invoking API")]
-        public void WhenISearchByFirstNameAsAndCityAsViaJqGridInvokingAPI(string p0, string p1)
+        [When(@"I search by FirstName '(.*)' and City '(.*)' via jqGrid invoking API")]
+        public void WhenISearchByLastNameAndCityViaJqGridInvokingAPI(string firstname, string city)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418723907822&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22FirstName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22we%22%7D%2C%7B%22field%22%3A%22City%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22san%22%7D%5D%7D";
+
+            GetPersonListByUri(queryurl);
         }
 
-        [Then(@"the returned record should all contains '(.*)' at City and '(.*)' at LastName")]
-        public void ThenTheReturnedRecordShouldAllContainsAtCityAndAtLastName(string p0, string p1)
+        [Then(@"the returned record should all contains FirstName '(.*)' and City '(.*)'")]
+        public void ThenTheReturnedRecordShouldAllContainsLastNameAndCity(string firstname, string city)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.FirstName.Contains(firstname).Should().BeTrue();
+                p.City.Contains(city).Should().BeTrue();
+            }
         }
 
-        [Then(@"the record that  at FistName is '(.*)' and City is '(.*)' should NOT be listed at the result with reading record")]
-        public void ThenTheRecordThatAtFistNameIsAndCityIsShouldNOTBeListedAtTheResultWithReadingRecord(string p0, string p1)
+        [Then(@"the record that  at FistName is  '(.*)' and City is '(.*)' should NOT be listed at the result with reading record")]
+        public void ThenTheRecordThatAtFistNameIsAndCityIsShouldNOTBeListedAtTheResultWithReadingRecord(string firstname, string city)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+            persons.FirstOrDefault(p => p.FirstName == firstname && p.City == city).Should().BeNull();
         }
 
-        [When(@"I search by LastName as '(.*)' and Zip as '(.*)' via jqGrid invoking API")]
-        public void WhenISearchByLastNameAsAndZipAsViaJqGridInvokingAPI(string p0, int p1)
+        [When(@"I search by FistName  '(.*)' and Zip '(.*)' via jqGrid invoking API")]
+        public void WhenISearchByFirstNameAndZipViaJqGridInvokingAPI(string firstname, string zip)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418724360073&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22LastName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22y%22%7D%2C%7B%22field%22%3A%22Zip%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%2294%22%7D%5D%7D";
+
+            GetPersonListByUri(queryurl);
         }
 
-        [Then(@"the returned record should all contains '(.*)' at LastName and '(.*)' at Zip")]
-        public void ThenTheReturnedRecordShouldAllContainsAtLastNameAndAtZip(string p0, int p1)
+        [When(@"I search by LastName   '(.*)' and Zip '(.*)' via jqGrid invoking API")]
+        public void WhenISearchByLastNameAndZipViaJqGridInvokingAPI(string lastname, string zip)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418724360073&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22LastName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22y%22%7D%2C%7B%22field%22%3A%22Zip%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%2294%22%7D%5D%7D";
+
+            GetPersonListByUri(queryurl);
         }
 
-        [Then(@"the record that  at LastName is '(.*)' and Zip is '(.*)' should NOT be listed at the result with reading record")]
-        public void ThenTheRecordThatAtLastNameIsAndZipIsShouldNOTBeListedAtTheResultWithReadingRecord(string p0, int p1)
+
+        [Then(@"the returned record should all contains LastName '(.*)'   and Zip '(.*)'")]
+        public void ThenTheReturnedRecordShouldAllContainsLastNameAndZip(string lastname, string zip)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.LastName.Contains(lastname).Should().BeTrue();
+                p.Zip.Contains(zip).Should().BeTrue();
+            }
         }
 
-        [When(@"I search by FirstName as '(.*)' and LastName as '(.*)' and City as '(.*)' via jqGrid invoking API")]
-        public void WhenISearchByFirstNameAsAndLastNameAsAndCityAsViaJqGridInvokingAPI(string p0, string p1, string p2)
+        [Then(@"the record that  at LastName is  '(.*)' and Zip is '(.*)' should NOT be listed at the result with reading record")]
+        public void ThenTheRecordThatAtLastNameIsAndZipIsShouldNOTBeListedAtTheResultWithReadingRecord(string lastname, string zip)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+            persons.FirstOrDefault(p => p.LastName == lastname && p.Zip == zip).Should().BeNull();
         }
 
-        [Then(@"the returned record should all contains '(.*)' at FirstName and '(.*)' at LastName and '(.*)' at City")]
-        public void ThenTheReturnedRecordShouldAllContainsAtFirstNameAndAtLastNameAndAtCity(string p0, string p1, string p2)
+        [When(@"I search by FirstName '(.*)' and LastName  '(.*)' and City as '(.*)' via jqGrid invoking API")]
+        public void WhenISearchByFirstNameAndLastNameAndCityAsViaJqGridInvokingAPI(string p0, string p1, string p2)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418724976622&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22FirstName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22we%22%7D%2C%7B%22field%22%3A%22LastName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22y%22%7D%2C%7B%22field%22%3A%22City%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22san%22%7D%5D%7D ";
+
+            GetPersonListByUri(queryurl);
         }
 
-        [When(@"I search by FirstName as '(.*)' and LastName as '(.*)' and City as '(.*)' and Zip as '(.*)' via jqGrid invoking API")]
+        [Then(@"the returned record should all contains  '(.*)' at FirstName and '(.*)' at LastName and '(.*)' at City")]
+        public void ThenTheReturnedRecordShouldAllContainsAtFirstNameAndAtLastNameAndAtCity(string firstname, string lastname, string city)
+        {
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.LastName.Contains(lastname).Should().BeTrue();
+                p.FirstName.Contains(firstname).Should().BeTrue();
+                p.City.Contains(city).Should().BeTrue();
+            }
+        }
+
+        [Then(@"the returned record should all contains '(.*)' at FirstName and '(.*)' at LastName and '(.*)' and '(.*)' at City and Zip")]
+        public void ThenTheReturnedRecordShouldAllContainsAtFirstNameAndAtLastNameAndAndAtZipAtCity(string firstname, string lastname, string city, string zip)
+        {
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.LastName.Contains(lastname).Should().BeTrue();
+                p.Zip.Contains(zip).Should().BeTrue();
+                p.FirstName.Contains(firstname).Should().BeTrue();
+                p.City.Contains(city).Should().BeTrue();
+            }
+        }
+
+        [When(@"I search by FirstName as  '(.*)' and LastName as '(.*)' and City as '(.*)' and Zip as '(.*)' via jqGrid invoking API")]
         public void WhenISearchByFirstNameAsAndLastNameAsAndCityAsAndZipAsViaJqGridInvokingAPI(string p0, string p1, string p2, int p3)
         {
-            ScenarioContext.Current.Pending();
-        }
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418725023106&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22FirstName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22we%22%7D%2C%7B%22field%22%3A%22LastName%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22y%22%7D%2C%7B%22field%22%3A%22City%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22san%22%7D%2C%7B%22field%22%3A%22Zip%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%2294%22%7D%5D%7D";
 
-        [Then(@"the returned record should all contains '(.*)' at FirstName and '(.*)' at LastName and '(.*)' and '(.*)' at Zip at City")]
-        public void ThenTheReturnedRecordShouldAllContainsAtFirstNameAndAtLastNameAndAndAtZipAtCity(string p0, string p1, string p2, int p3)
-        {
-            ScenarioContext.Current.Pending();
+            GetPersonListByUri(queryurl);
         }
 
     }

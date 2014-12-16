@@ -31,8 +31,8 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Search", "In order to search record by properties\nAs a user\nI want to be search record by p" +
-                    "roperties", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Search", "In order to search record by properties\r\nAs a user\r\nI want to be search record by" +
+                    " properties", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -154,9 +154,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 27
- testRunner.When("I search by FirstName as \'We\' and LastName as \'Y\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search by FirstName \'We\' and LastName \'Y\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
- testRunner.Then("the returned record should all contains \'We\' at FirstName and \'Y\' at LastName", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the returned record should all contains FirstName \'We\'  and LastName \'Y\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 29
  testRunner.And("the record that  at FistName is \'Weimin\' and LastName is \'Jobs\' should NOT be lis" +
                     "ted at the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -173,12 +173,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line 32
- testRunner.When("I search by FirstName as \'We\' and City as \'San\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search by FirstName \'We\' and City \'San\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
- testRunner.Then("the returned record should all contains \'We\' at City and \'San\' at LastName", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the returned record should all contains FirstName \'We\' and City \'San\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
- testRunner.And("the record that  at FistName is \'Weimin\' and City is \'Guang Zhou\' should NOT be l" +
-                    "isted at the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the record that  at FistName is  \'Weimin\' and City is \'Guang Zhou\' should NOT be " +
+                    "listed at the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -192,12 +192,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 36
 this.ScenarioSetup(scenarioInfo);
 #line 37
- testRunner.When("I search by LastName as \'Y\' and Zip as \'94\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search by LastName   \'Y\' and Zip \'94\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 38
- testRunner.Then("the returned record should all contains \'Y\' at LastName and \'94\' at Zip", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the returned record should all contains LastName \'Y\'   and Zip \'94\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 39
- testRunner.And("the record that  at LastName is \'Ye\' and Zip is \'510000\' should NOT be listed at " +
-                    "the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the record that  at LastName is  \'Ye\' and Zip is \'510000\' should NOT be listed at" +
+                    " the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -211,11 +211,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
- testRunner.When("I search by FirstName as \'We\' and LastName as \'Y\' and City as \'San\' via jqGrid in" +
-                    "voking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search by FirstName \'We\' and LastName  \'Y\' and City as \'San\' via jqGrid invokin" +
+                    "g API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 43
- testRunner.Then("the returned record should all contains \'We\' at FirstName and \'Y\' at LastName and" +
-                    " \'San\' at City", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the returned record should all contains  \'We\' at FirstName and \'Y\' at LastName an" +
+                    "d \'San\' at City", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 44
  testRunner.And("the record that  at FistName is \'Weimin\' and LastName is \'Jobs\' should NOT be lis" +
                     "ted at the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -232,11 +232,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 47
- testRunner.When("I search by FirstName as \'We\' and LastName as \'Y\' and City as \'San\' and Zip as \'9" +
-                    "4\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I search by FirstName as  \'We\' and LastName as \'Y\' and City as \'San\' and Zip as \'" +
+                    "94\' via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 48
  testRunner.Then("the returned record should all contains \'We\' at FirstName and \'Y\' at LastName and" +
-                    " \'San\' and \'94\' at Zip at City", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    " \'San\' and \'94\' at City and Zip", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 49
  testRunner.And("the record that  at FistName is \'Weimin\' and LastName is \'Jobs\' should NOT be lis" +
                     "ted at the result with reading record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

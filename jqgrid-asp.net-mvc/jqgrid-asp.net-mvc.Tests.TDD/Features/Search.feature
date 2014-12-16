@@ -24,26 +24,26 @@ Scenario: Search by Zip
 	And the record that  at Zip is '11111' should NOT be listed at the result with reading record
 
 Scenario: Search by FirstName and LastName both
-	When I search by FirstName as 'We' and LastName as 'Y' via jqGrid invoking API
-	Then the returned record should all contains 'We' at FirstName and 'Y' at LastName
+	When I search by FirstName 'We' and LastName 'Y' via jqGrid invoking API
+	Then the returned record should all contains FirstName 'We'  and LastName 'Y'
 	And the record that  at FistName is 'Weimin' and LastName is 'Jobs' should NOT be listed at the result with reading record
 
 Scenario: Search by FirstName and City both
-	When I search by FirstName as 'We' and City as 'San' via jqGrid invoking API
-	Then the returned record should all contains 'We' at City and 'San' at LastName
-	And the record that  at FistName is 'Weimin' and City is 'Guang Zhou' should NOT be listed at the result with reading record
+	When I search by FirstName 'We' and City 'San' via jqGrid invoking API
+	Then the returned record should all contains FirstName 'We' and City 'San'
+	And the record that  at FistName is  'Weimin' and City is 'Guang Zhou' should NOT be listed at the result with reading record
 
 Scenario: Search by LastName and Zip both
-	When I search by LastName as 'Y' and Zip as '94' via jqGrid invoking API
-	Then the returned record should all contains 'Y' at LastName and '94' at Zip
-	And the record that  at LastName is 'Ye' and Zip is '510000' should NOT be listed at the result with reading record
+	When I search by LastName   'Y' and Zip '94' via jqGrid invoking API
+	Then the returned record should all contains LastName 'Y'   and Zip '94'
+	And the record that  at LastName is  'Ye' and Zip is '510000' should NOT be listed at the result with reading record
 
 Scenario: Search by FirstName , LastName , and city both
-	When I search by FirstName as 'We' and LastName as 'Y' and City as 'San' via jqGrid invoking API
-	Then the returned record should all contains 'We' at FirstName and 'Y' at LastName and 'San' at City
+	When I search by FirstName 'We' and LastName  'Y' and City as 'San' via jqGrid invoking API
+	Then the returned record should all contains  'We' at FirstName and 'Y' at LastName and 'San' at City
 	And the record that  at FistName is 'Weimin' and LastName is 'Jobs' should NOT be listed at the result with reading record
 
 Scenario: Search by FirstName , LastName , city and zip both
-	When I search by FirstName as 'We' and LastName as 'Y' and City as 'San' and Zip as '94' via jqGrid invoking API
-	Then the returned record should all contains 'We' at FirstName and 'Y' at LastName and 'San' and '94' at Zip at City
+	When I search by FirstName as  'We' and LastName as 'Y' and City as 'San' and Zip as '94' via jqGrid invoking API
+	Then the returned record should all contains 'We' at FirstName and 'Y' at LastName and 'San' and '94' at City and Zip
 	And the record that  at FistName is 'Weimin' and LastName is 'Jobs' should NOT be listed at the result with reading record
