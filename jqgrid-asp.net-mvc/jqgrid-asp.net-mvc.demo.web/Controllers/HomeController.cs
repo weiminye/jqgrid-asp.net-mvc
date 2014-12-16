@@ -21,61 +21,6 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.Grid.Filter filters)
         {
-            IQueryable<Person> where_predicate = null;
-            if (_search)
-            {
-                if (filters == null) filters = jqgrid_asp.net_mvc.Grid.Filter.Create(Request["filters"] ?? "");
-
-                if (filters == null) throw new NullReferenceException("flters is null, load mvc parse is error");
-
-                where_predicate = db.Persons;
-                //And
-                if (filters.groupOp == "AND")
-                    foreach (var rule in filters.rules)
-                    {
-                        if (rule.op == "true")
-                        {
-                            where_predicate = where_predicate.Where<Person>(
-                                rule.field, rule.data,
-                                WhereOperation.Contains);
-                        }
-                        else
-                        {
-                            where_predicate = where_predicate.Where<Person>(
-                                rule.field, rule.data,
-                                (WhereOperation)StringEnum.Parse(typeof(WhereOperation), rule.op));
-                        }
-                    }
-                else
-                {
-                    //Or
-                    var temp = (new List<Person>()).AsQueryable();
-                    foreach (var rule in filters.rules)
-                    {
-                        var t = where_predicate.Where<Person>(
-                        rule.field, rule.data,
-                        (WhereOperation)StringEnum.Parse(typeof(WhereOperation), rule.op));
-
-                        if (rule.op == "true")
-                        {
-                            t = where_predicate.Where<Person>(
-                                                    rule.field, rule.data,
-                                                    WhereOperation.Contains);
-                        }
-
-                        temp = temp.Concat<Person>(t);
-
-                    }
-                    //remove repeating records
-                    where_predicate = temp.Distinct<Person>();
-                }
-
-            }
-            else
-            {
-                where_predicate = null;
-            }
-
             return JqGrid.Load(db.Persons,
                 d => d.FirstName,
                 s => new
@@ -87,7 +32,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
                     s.City,
                     s.Zip,
 
-                }, rows, page, where_predicate);
+                }, rows, page, _search, ref filters);
 
         }
 
@@ -97,10 +42,10 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         public ActionResult UpdateForJqGrid(Person person, string oper)
         {
-            return JqGrid.UpdateForJqGrid(person, oper, AddViaJqGrid, EditViaJqGrid, DelViaJqGird);
+            return JqGrid.UpdateForJqGrid(person, oper, AddPerson, EditPerson, DeletePerson);
         }
 
-        private ActionResult DelViaJqGird(Person person)
+        private ActionResult DeletePerson(Person person)
         {
             var deletepersonentity = db.Persons.Single(p => p.ID == person.ID);
             db.Persons.Remove(deletepersonentity);
@@ -110,7 +55,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
             return Content("Delete success");
         }
 
-        private ActionResult EditViaJqGrid(Person person)
+        private ActionResult EditPerson(Person person)
         {
             var editpersonentity = db.Persons.Single(p => p.ID == person.ID);
             editpersonentity.FirstName = person.FirstName;
@@ -124,7 +69,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         }
 
-        private ActionResult AddViaJqGrid(Person person)
+        private ActionResult AddPerson(Person person)
         {
             var newpersonentity = new Person();
             newpersonentity.FirstName = person.FirstName;

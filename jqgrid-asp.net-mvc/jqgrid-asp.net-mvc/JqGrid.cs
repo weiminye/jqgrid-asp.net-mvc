@@ -4,14 +4,40 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using jqgrid_asp.net_mvc.Helpers;
 
 namespace jqgrid_asp.net_mvc
 {
     public class JqGrid
     {
-        public static ActionResult Load<TSource, TResult, TKey>(DbSet<TSource> dbset, Func<TSource, TKey> orderquery, Func<TSource, TResult> selector, int? rows, int? page, IQueryable<TSource> where_predicate = null, bool orderbydescending = true) where TSource : class
+        public static ActionResult UpdateForJqGrid<TSource>(
+                TSource t,
+                string oper,
+                Func<TSource, ActionResult> addentry,
+                Func<TSource, ActionResult> editentry,
+                Func<TSource, ActionResult> delentry
+                )
+                where TSource : class
         {
+            switch (oper)
+            {
+                case "add": return addentry(t);
+                case "edit": return editentry(t);
+                case "del": return delentry(t);
+                default:
+                    throw new ArgumentOutOfRangeException("oper value is " + oper);
+            }
+
+            throw new ArgumentOutOfRangeException("oper value is " + oper);
+        }
+
+
+        public static ActionResult Load<TSource, TResult, TKey>(DbSet<TSource> dbset, Func<TSource, TKey> orderquery, Func<TSource, TResult> selector, int? rows, int? page, bool _search, ref jqgrid_asp.net_mvc.Grid.Filter filters, bool orderbydescending = true) where TSource : class
+        {
+            IQueryable<TSource> where_predicate = JqGrid.GenerateWherePredicate(dbset, _search, ref filters);
+
             TSource[] cachecresult = null;
 
             if (where_predicate != null)
@@ -73,27 +99,66 @@ namespace jqgrid_asp.net_mvc
             return returnjson;
         }
 
-        public static ActionResult UpdateForJqGrid<TSource>(
-            TSource t,
-            string oper,
-            Func<TSource, ActionResult> AddViaJqGrid,
-            Func<TSource, ActionResult> EditViaJqGrid,
-            Func<TSource, ActionResult> DelViaJqGird
-            )
+        private static IQueryable<TSource> GenerateWherePredicate<TSource>(DbSet<TSource> dbset, bool _search, ref jqgrid_asp.net_mvc.Grid.Filter filters)
             where TSource : class
         {
-            switch (oper)
+            var request = HttpContext.Current.Request;
+            IQueryable<TSource> where_predicate = null;
+            if (_search)
             {
-                case "add": return AddViaJqGrid(t);
-                case "edit": return EditViaJqGrid(t);
-                case "del": return DelViaJqGird(t);
-                default:
-                    throw new ArgumentOutOfRangeException("oper value is " + oper);
+                if (filters == null) filters = jqgrid_asp.net_mvc.Grid.Filter.Create(request["filters"] ?? "");
+
+                if (filters == null) throw new NullReferenceException("flters is null, load mvc parse is error");
+
+                where_predicate = dbset;
+                //And
+                if (filters.groupOp == "AND")
+                    foreach (var rule in filters.rules)
+                    {
+                        if (rule.op == "true")
+                        {
+                            where_predicate = where_predicate.Where<TSource>(
+                                rule.field, rule.data,
+                                WhereOperation.Contains);
+                        }
+                        else
+                        {
+                            where_predicate = where_predicate.Where<TSource>(
+                                rule.field, rule.data,
+                                (WhereOperation)StringEnum.Parse(typeof(WhereOperation), rule.op));
+                        }
+                    }
+                else
+                {
+                    //Or
+                    var temp = (new List<TSource>()).AsQueryable();
+                    foreach (var rule in filters.rules)
+                    {
+                        var t = where_predicate.Where<TSource>(
+                        rule.field, rule.data,
+                        (WhereOperation)StringEnum.Parse(typeof(WhereOperation), rule.op));
+
+                        if (rule.op == "true")
+                        {
+                            t = where_predicate.Where<TSource>(
+                                                    rule.field, rule.data,
+                                                    WhereOperation.Contains);
+                        }
+
+                        temp = temp.Concat<TSource>(t);
+
+                    }
+                    //remove repeating records
+                    where_predicate = temp.Distinct<TSource>();
+                }
+
             }
-
-            throw new ArgumentOutOfRangeException("oper value is " + oper);
+            else
+            {
+                where_predicate = null;
+            }
+            return where_predicate;
         }
-
     }
 
     public class JqGridReadingJsonData<TSource, TResult> where TSource : class
