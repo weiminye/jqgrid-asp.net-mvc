@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace jqgrid_asp.net_mvc.demo.web.Models.Grid
+namespace jqgrid_asp.net_mvc.Grid
 {
     public class GridModelBinder : IModelBinder
     {

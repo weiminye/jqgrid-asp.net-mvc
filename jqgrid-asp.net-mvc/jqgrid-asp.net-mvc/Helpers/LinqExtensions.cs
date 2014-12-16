@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace jqgrid_asp.net_mvc.demo.web.Models.Helpers
+namespace jqgrid_asp.net_mvc.Helpers
 {
 
     public static class LinqExtensions

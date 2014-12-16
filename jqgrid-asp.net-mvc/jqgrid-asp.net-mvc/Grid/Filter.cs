@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json; //http://www.cnblogs.com/CodingPerfectWorld/archive/2010/08/30/1812628.html
 
-namespace jqgrid_asp.net_mvc.demo.web.Models.Grid
+namespace jqgrid_asp.net_mvc.Grid
 {
     [DataContract]
     public class Filter

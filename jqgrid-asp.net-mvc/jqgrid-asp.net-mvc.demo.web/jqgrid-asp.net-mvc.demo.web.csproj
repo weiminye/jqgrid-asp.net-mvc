@@ -182,14 +182,6 @@
     <Compile Include="Models\CRUDDemoDBContextNoClearInitializer.cs" />
     <Compile Include="Models\CRUDDemoDBContext.cs" />
     <Compile Include="Models\DataInit.cs" />
-    <Compile Include="Models\Grid\Filter.cs" />
-    <Compile Include="Models\Grid\GridModelBinder.cs" />
-    <Compile Include="Models\Grid\GridSettings.cs" />
-    <Compile Include="Models\Grid\JsonModelBinder.cs" />
-    <Compile Include="Models\Grid\Rule.cs" />
-    <Compile Include="Models\Helpers\LinqExtensions.cs" />
-    <Compile Include="Models\Helpers\StringEnum.cs" />
-    <Compile Include="Models\Helpers\WhereOperation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />

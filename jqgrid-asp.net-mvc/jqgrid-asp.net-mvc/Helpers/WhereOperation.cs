@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace jqgrid_asp.net_mvc.demo.web.Models.Helpers
+namespace jqgrid_asp.net_mvc.Helpers
 {
     /// <summary>
     /// The supported operations in where-extension

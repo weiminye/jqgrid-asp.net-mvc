@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 using System.Runtime.Serialization.Json;
 
-namespace jqgrid_asp.net_mvc.demo.web.Models.Grid
+namespace jqgrid_asp.net_mvc.Grid
 {
     /*public class JsonModelBinder : IModelBinder
     {

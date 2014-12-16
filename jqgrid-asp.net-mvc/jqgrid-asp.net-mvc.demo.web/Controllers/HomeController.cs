@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using jqgrid_asp.net_mvc.demo.web.Models;
-using jqgrid_asp.net_mvc.demo.web.Models.Helpers;
+using jqgrid_asp.net_mvc.Helpers;
 
 namespace jqgrid_asp.net_mvc.demo.web.Controllers
 {
@@ -19,12 +19,12 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         #region jqgrid read and search
 
-        public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.demo.web.Models.Grid.Filter filters)
+        public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.Grid.Filter filters)
         {
             IQueryable<Person> where_predicate = null;
             if (_search)
             {
-                if (filters == null) filters = jqgrid_asp.net_mvc.demo.web.Models.Grid.Filter.Create(Request["filters"] ?? "");
+                if (filters == null) filters = jqgrid_asp.net_mvc.Grid.Filter.Create(Request["filters"] ?? "");
 
                 if (filters == null) throw new NullReferenceException("flters is null, load mvc parse is error");
 

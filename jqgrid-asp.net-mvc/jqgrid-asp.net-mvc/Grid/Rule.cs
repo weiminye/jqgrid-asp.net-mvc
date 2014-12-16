@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace jqgrid_asp.net_mvc.demo.web.Models.Grid
+namespace jqgrid_asp.net_mvc.Grid
 {
     [DataContract]
     public class Rule

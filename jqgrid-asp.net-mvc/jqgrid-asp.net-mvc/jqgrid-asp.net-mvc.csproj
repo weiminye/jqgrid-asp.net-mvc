@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grid\Filter.cs" />
+    <Compile Include="Grid\GridModelBinder.cs" />
+    <Compile Include="Grid\GridSettings.cs" />
+    <Compile Include="Grid\JsonModelBinder.cs" />
+    <Compile Include="Grid\Rule.cs" />
+    <Compile Include="Helpers\LinqExtensions.cs" />
+    <Compile Include="Helpers\StringEnum.cs" />
+    <Compile Include="Helpers\WhereOperation.cs" />
     <Compile Include="JqGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
