@@ -87,6 +87,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CRUD.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Search.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Search.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Uncategorized.cs" />
   </ItemGroup>
@@ -109,6 +114,10 @@
     <None Include="Features\CRUD.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CRUD.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Search.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Search.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
