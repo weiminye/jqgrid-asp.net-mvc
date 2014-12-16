@@ -311,39 +311,55 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
         }
 
         [When(@"I search by City as '(.*)' via jqGrid invoking API")]
-        public void WhenISearchByCityAsViaJqGridInvokingAPI(string p0)
+        public void WhenISearchByCityAsViaJqGridInvokingAPI(string city)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418722379194&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22City%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%22san%22%7D%5D%7D";
+
+            GetPersonListByUri(queryurl);
         }
 
         [Then(@"the returned record should all contains '(.*)' at City")]
-        public void ThenTheReturnedRecordShouldAllContainsAtCity(string p0)
+        public void ThenTheReturnedRecordShouldAllContainsAtCity(string city)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.City.Contains(city).Should().BeTrue();
+            }
         }
 
         [Then(@"the record that  at City is '(.*)' should NOT be listed at the result with reading record")]
-        public void ThenTheRecordThatAtCityIsShouldNOTBeListedAtTheResultWithReadingRecord(string p0)
+        public void ThenTheRecordThatAtCityIsShouldNOTBeListedAtTheResultWithReadingRecord(string city)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+            persons.FirstOrDefault(p => p.City == city).Should().BeNull();
         }
 
         [When(@"I search by Zip as '(.*)' via jqGrid invoking API")]
-        public void WhenISearchByZipAsViaJqGridInvokingAPI(int p0)
+        public void WhenISearchByZipAsViaJqGridInvokingAPI(string zip)
         {
-            ScenarioContext.Current.Pending();
+            var queryurl = "/Home/IndexJsonList?_search=true&nd=1418722215016&rows=10&page=1&sidx=invid&sord=desc&filters=%7B%22groupOp%22%3A%22AND%22%2C%22rules%22%3A%5B%7B%22field%22%3A%22Zip%22%2C%22op%22%3A%22true%22%2C%22data%22%3A%2294%22%7D%5D%7D";
+
+            GetPersonListByUri(queryurl);
         }
 
         [Then(@"the returned record should all contains '(.*)' at Zip")]
-        public void ThenTheReturnedRecordShouldAllContainsAtZip(int p0)
+        public void ThenTheReturnedRecordShouldAllContainsAtZip(string zip)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+
+            foreach (var p in persons)
+            {
+                p.Zip.Contains(zip).Should().BeTrue();
+            }
         }
 
         [Then(@"the record that  at Zip is '(.*)' should NOT be listed at the result with reading record")]
-        public void ThenTheRecordThatAtZipIsShouldNOTBeListedAtTheResultWithReadingRecord(int p0)
+        public void ThenTheRecordThatAtZipIsShouldNOTBeListedAtTheResultWithReadingRecord(string zip)
         {
-            ScenarioContext.Current.Pending();
+            var persons = ReturnandOutputPersons();
+            persons.FirstOrDefault(p => p.Zip == zip).Should().BeNull();
         }
 
         [When(@"I search by FirstName as '(.*)' and LastName as '(.*)' via jqGrid invoking API")]
