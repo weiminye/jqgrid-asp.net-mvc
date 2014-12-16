@@ -20,11 +20,8 @@ Scenario: update record
 	Then the record with the updated value should be listed at the result with reading record
 	And the record with the original value should NOT be listed at the result with reading record
 
-#
-#@CRUD@Delete@Positive
-#Scenario: delete record
-#	Given I am at jqGrid page
-#	When I press plus button at jqGrid
-#	And Create a new test record
-#	And submit
-#	Then the added test record will be shown at jqGrid
+@CRUD@Delete@Positive
+Scenario: delete record
+	Given I create a record via jqGrid invoking API
+	When I delete the record via jqGrid invoking API	
+	Then the record with the original value should NOT be listed at the result with reading record

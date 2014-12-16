@@ -209,6 +209,44 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
             VerifyIfExistatDB(CurrentTestDataGuid, false);
         }
 
+        [When(@"I delete the record via jqGrid invoking API")]
+        public void WhenIDeleteTheRecordViaJqGridInvokingAPI()
+        {
+            WhenIReadRecordsViaJqGridInvokingAPI();
+            var persons = JqGridReadingJsonData.rows as IEnumerable<Person>;
+            var id = persons.SingleOrDefault(p => p.FirstName.Contains(CurrentTestDataGuid)).ID;
+
+            var person = new
+            {
+                oper = "del",
+                id = id,
+            };
+
+            Uri url = null;
+
+            if (Uri.TryCreate(new Uri(Vars.DemoSiteWebHost), "/Home/UpdateForJqGrid", out url))
+            {
+                Console.WriteLine("url is {0}", url);
+            }
+
+            HttpClient client = new HttpClient();
+            // Add an Accept header for JSON format.            
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            Uri finalurl = null;
+            // List all products.
+            var response = client.PostAsJsonAsync(url, person).Result;  // Blocking call! 
+            if (response.IsSuccessStatusCode)
+            {
+                finalurl = response.Headers.Location;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
 
     }
 }
