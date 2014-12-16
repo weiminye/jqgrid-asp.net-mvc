@@ -17,7 +17,7 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         private CRUDDemoDBContext db = new CRUDDemoDBContext();
 
-        #region for jqgrid
+        #region jqgrid read and search
 
         public ActionResult IndexJsonList(bool _search, string nd, int? rows, int? page, string sidx, string sord, jqgrid_asp.net_mvc.demo.web.Models.Grid.Filter filters)
         {
@@ -91,90 +91,53 @@ namespace jqgrid_asp.net_mvc.demo.web.Controllers
 
         }
 
+        #endregion
+
+        #region jqgrid add, edit, delete
+
         public ActionResult UpdateForJqGrid(Person person, string oper)
         {
-            //throw new NotImplementedException();
+            return JqGrid.UpdateForJqGrid(person, oper, AddViaJqGrid, EditViaJqGrid, DelViaJqGird);
+        }
 
-            switch (oper)
-            {
-                case "add":
+        private ActionResult DelViaJqGird(Person person)
+        {
+            var deletepersonentity = db.Persons.Single(p => p.ID == person.ID);
+            db.Persons.Remove(deletepersonentity);
 
-                    var newpersonentity = new Person();
-                    newpersonentity.FirstName = person.FirstName;
-                    newpersonentity.LastName = person.LastName;
-                    newpersonentity.City = person.City;
-                    newpersonentity.Zip = person.Zip;
+            db.SaveChanges();
 
-                    db.Persons.Add(newpersonentity);
-                    db.SaveChanges();
+            return Content("Delete success");
+        }
 
-                    return Content("Add success");
+        private ActionResult EditViaJqGrid(Person person)
+        {
+            var editpersonentity = db.Persons.Single(p => p.ID == person.ID);
+            editpersonentity.FirstName = person.FirstName;
+            editpersonentity.LastName = person.LastName;
+            editpersonentity.City = person.City;
+            editpersonentity.Zip = person.Zip;
 
-                case "edit":
-                    //throw new NotImplementedException();
+            db.SaveChanges();
 
-                    //var guidid = Guid.Parse(id);
+            return Content("Update success");
 
-                    var editpersonentity = db.Persons.Single(p => p.ID == person.ID);
-                    editpersonentity.FirstName = person.FirstName;
-                    editpersonentity.LastName = person.LastName;
-                    editpersonentity.City = person.City;
-                    editpersonentity.Zip = person.Zip;
+        }
 
-                    db.SaveChanges();
+        private ActionResult AddViaJqGrid(Person person)
+        {
+            var newpersonentity = new Person();
+            newpersonentity.FirstName = person.FirstName;
+            newpersonentity.LastName = person.LastName;
+            newpersonentity.City = person.City;
+            newpersonentity.Zip = person.Zip;
 
-                    return Content("Update success");
+            db.Persons.Add(newpersonentity);
+            db.SaveChanges();
 
-                case "del":
-                    //throw new NotImplementedException();
-                    //var ids = new List<string>();
-                    //if (idstr.IsNotNullOrEmpty())
-                    //{
-                    //    var idstrarray = idstr.Split(',');
-                    //    foreach (var id in idstrarray)
-                    //    {
-                    //        ids.Add(id);
-                    //    }
-                    //}
-
-                    ////db.Projects
-                    //foreach (var id in ids)
-                    //{
-                    //    var guidid = Guid.Parse(id);
-                    //    var entity = dbset.Single(p => p.ID == guidid);
-
-                    //    dbset.Remove(entity);
-                    //}
-                    var deletepersonentity = db.Persons.Single(p => p.ID == person.ID);
-                    db.Persons.Remove(deletepersonentity);
-
-                    db.SaveChanges();
-
-
-                    return Content("Delete success");
-
-                default:
-                    throw new ArgumentOutOfRangeException("oper value is " + oper);
-            }
-
-            throw new ArgumentOutOfRangeException("oper value is " + oper);
+            return Content("Add success");
         }
 
         #endregion
-
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

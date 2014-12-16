@@ -72,6 +72,28 @@ namespace jqgrid_asp.net_mvc
 
             return returnjson;
         }
+
+        public static ActionResult UpdateForJqGrid<TSource>(
+            TSource t,
+            string oper,
+            Func<TSource, ActionResult> AddViaJqGrid,
+            Func<TSource, ActionResult> EditViaJqGrid,
+            Func<TSource, ActionResult> DelViaJqGird
+            )
+            where TSource : class
+        {
+            switch (oper)
+            {
+                case "add": return AddViaJqGrid(t);
+                case "edit": return EditViaJqGrid(t);
+                case "del": return DelViaJqGird(t);
+                default:
+                    throw new ArgumentOutOfRangeException("oper value is " + oper);
+            }
+
+            throw new ArgumentOutOfRangeException("oper value is " + oper);
+        }
+
     }
 
     public class JqGridReadingJsonData<TSource, TResult> where TSource : class
