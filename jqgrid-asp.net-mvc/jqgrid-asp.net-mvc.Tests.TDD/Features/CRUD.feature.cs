@@ -111,6 +111,34 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("update record")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CRUD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Update")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Positive")]
+        public virtual void UpdateRecord()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("update record", new string[] {
+                        "CRUD",
+                        "Update",
+                        "Positive"});
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line 18
+ testRunner.Given("I create a record via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.When("I update the record via jqGrid invoking API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then("the record with the updated value should be listed at the result with reading rec" +
+                    "ord", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+ testRunner.And("the record with the original value should NOT be listed at the result with readin" +
+                    "g record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

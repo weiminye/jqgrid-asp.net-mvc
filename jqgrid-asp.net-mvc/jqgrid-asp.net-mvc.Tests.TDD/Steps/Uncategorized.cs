@@ -83,6 +83,7 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
             }
         }
 
+        [Given(@"I create a record via jqGrid invoking API")]
         [When(@"I create a record via jqGrid invoking API")]
         public void WhenICreateARecordViaJqGridInvokingAPI()
         {
@@ -126,11 +127,88 @@ namespace jqgrid_asp.net_mvc.Tests.TDD.API.Steps
         [Then(@"the record should be listed at the result with reading record")]
         public void ThenTheRecordShouldBeListedAtTheResultWithReadingRecord()
         {
+            VerifyIfExistatDB(CurrentTestDataGuid,true);
+        }
+
+        private void VerifyIfExistatDB(string testdataguid,bool isexist)
+        {
             WhenIReadRecordsViaJqGridInvokingAPI();
 
             var persons = JqGridReadingJsonData.rows as IEnumerable<Person>;
-            persons.SingleOrDefault(p => p.FirstName.Contains(CurrentTestDataGuid)).Should().NotBeNull();
+            if (isexist) persons.SingleOrDefault(p => p.FirstName.Contains(testdataguid)).Should().NotBeNull();
+            else persons.SingleOrDefault(p => p.FirstName.Contains(testdataguid)).Should().BeNull();
         }
+
+
+        [When(@"I update the record via jqGrid invoking API")]
+        public void WhenIUpdateTheRecordViaJqGridInvokingAPI()
+        {
+            UpdatedTestDataGuid = Guid.NewGuid().ToString();
+            Console.WriteLine("UpdatedTestDataGuid is {0}", UpdatedTestDataGuid);
+
+            WhenIReadRecordsViaJqGridInvokingAPI();
+            var persons = JqGridReadingJsonData.rows as IEnumerable<Person>;
+            var id = persons.SingleOrDefault(p => p.FirstName.Contains(CurrentTestDataGuid)).ID;
+            
+            var person = new
+            {
+                FirstName = "FirstName" + UpdatedTestDataGuid,
+                LastName = "LastName" + UpdatedTestDataGuid,
+                Zip = "Zip" + UpdatedTestDataGuid,
+                City = "City" + UpdatedTestDataGuid,
+                oper = "edit",
+                ID = id,
+            };
+
+            Uri url = null;
+
+            if (Uri.TryCreate(new Uri(Vars.DemoSiteWebHost), "/Home/UpdateForJqGrid", out url))
+            {
+                Console.WriteLine("url is {0}", url);
+            }
+
+            HttpClient client = new HttpClient();
+            // Add an Accept header for JSON format.            
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            Uri finalurl = null;
+            // List all products.
+            var response = client.PostAsJsonAsync(url, person).Result;  // Blocking call! 
+            if (response.IsSuccessStatusCode)
+            {
+                finalurl = response.Headers.Location;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        [Then(@"the record with the updated value should be listed at the result with reading record")]
+        public void ThenTheRecordWithTheUpdatedValueShouldBeListedAtTheResultWithReadingRecord()
+        {
+            VerifyIfExistatDB(UpdatedTestDataGuid, true);
+        }
+
+        public string UpdatedTestDataGuid
+        {
+            get
+            {
+                return ScenarioContext.Current["UpdatedTestDataGuid"] as string;
+            }
+            set
+            {
+                ScenarioContext.Current["UpdatedTestDataGuid"] = value;
+            }
+        }
+
+        [Then(@"the record with the original value should NOT be listed at the result with reading record")]
+        public void ThenTheRecordWithTheOriginalValueShouldNOTBeListedAtTheResultWithReadingRecord()
+        {
+            VerifyIfExistatDB(CurrentTestDataGuid, false);
+        }
+
 
     }
 }
