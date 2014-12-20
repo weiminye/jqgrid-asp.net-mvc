@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using jqgrid_asp.net_mvc.demo.web.Models;
-using jqgrid_asp.net_mvc.Helpers;
+using jqgrid_asp.net_mvc;
 
 namespace jqgrid_asp.net_mvc.demo.web.Controllers
 {
